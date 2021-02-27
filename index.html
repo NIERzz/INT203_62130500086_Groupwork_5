@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Vue Js - HelloWorld App</title>
+    <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+    <!-- Using via Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- https://tailwindcss.com/docs/installation -->
+    <!-- Using Tailwind via CDN -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <!-- https://v3.vuejs.org/guide/installation.html#release-notes --> 
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+  </head>
+
+  <body>
+    <div id="container" class="m-5 max-w-xl mx-auto">
+      <div>
+        <h1 class="flex justify-center text-3xl font-bold">Photo Gallery ({{countphoto}})</h1>
+        <photo-search :searchbtn="searchbtn" :cancelbtn="cancelbtn" :inputbtn="inputbtn"  @clicksearch="mouseclicksearch" @clickcancel="mouseclickcancel" @searching="searchingphoto"></photo-search>
+      <!--
+        <div class="flex justify-end">
+        <button v-show="searchbtn" @click="mouseclicksearch"><img src="images/search.png"></button>
+        </div>
+        <input  v-show="inputbtn" type="text" v-model="searchphoto" placeholder="Enter a new task ..." class="p-2 ml-40 mt-5 bg-white rounded flex-1 border-b-2 border-blue-300 " @keyup.enter="searchingphoto" />
+        <button v-show="cancelbtn" @click="mouseclickcancel" class="bg-blue-200 rounded ml-3 p-2 text-xl text-white hover:bg-blue-300 hover:text-black">Cancel</button>
+      -->
+        <photo-view :popup="popup" :bigphos="bigphos" @popupfunc="popupfunc"></photo-view>
+      <!--
+          <div v-show="popup" class="text-right bg-black px-9 pb-9">
+          <button v-on:click="popup=false" class="m-1 text-2xl text-white">X</button>
+          <img :src="bigphos">
+          </div>
+      --> 
+        
+        <div>
+          <photo-item :photos="photos" @popup="popupfunc"></photo-item>
+          
+          <!--
+                <ul class="flex flex-col space-y-5 ">
+                  <li v-show="photo.show" v-for="(photo,index) in photos" class="flex items-center mt-5 ">
+                    <button v-on:click="popupfunc(index)" v-on:dblclick="toggleheart(index)" ><img :src="photo.url" width="200" height="200"></button>
+                    <span  class="text-xl font-medium ml-5 w-64" >{{ photo.alt }}</span>
+                    <span v-show="photo.done" class="ml-5"><img src="images/heart.png" width="25"></span>
+                  </li>
+                  <li> {{ checkItems }} </li>
+                </ul>
+            -->
+        </div>
+      </div>  
+    </div>
+    
+  
+    <!-- my main.js -->
+    <script src="./main.js"></script>
+    <script src="./components/PhotoItem.js"></script>
+    <script src="./components/PhotoSearch.js"></script>
+    <script src="./components/PhotoView.js"></script>
+    
+    <script>app.mount("#container")</script>
+  </body>
+</html>
